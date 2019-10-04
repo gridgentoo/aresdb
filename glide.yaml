@@ -1,0 +1,77 @@
+package: github.com/uber/cherami-server
+import:
+- package: github.com/sirupsen/logrus
+- package: github.com/apache/thrift
+  version: ">=0.9.3, <0.11.0"
+  subpackages:
+  - lib/go/thrift
+- package: github.com/aws/aws-sdk-go
+  subpackages:
+  - aws
+  - aws/awserr
+  - aws/credentials
+  - aws/session
+  - service/s3
+  - service/s3/s3manager
+- package: github.com/cactus/go-statsd-client
+  subpackages:
+  - statsd
+- package: github.com/codegangsta/cli
+- package: github.com/gocql/gocql
+- package: github.com/pborman/uuid
+- package: github.com/stretchr/testify
+  subpackages:
+  - mock
+  - require
+  - suite
+- package: github.com/tecbot/gorocksdb
+  version: 17991d3138a879b166adebf86f7c84da3c1517a7
+- package: github.com/cockroachdb/c-jemalloc
+  version: 2582439cfbace368ad093c71209ad72efef8aa4d
+- package: github.com/cockroachdb/c-rocksdb
+  version: 09d6d520b61160d194c06768ed85415cd8abee57
+- package: github.com/uber-common/bark
+- package: github.com/uber/cherami-client-go
+  version: =2.5.0
+  subpackages:
+  - client/cherami
+  - common
+  - common/backoff
+  - common/websocket
+  - stream
+- package: github.com/uber/cherami-thrift
+  subpackages:
+  - .generated/go/admin
+  - .generated/go/cherami
+  - .generated/go/controller
+  - .generated/go/metadata
+  - .generated/go/replicator
+  - .generated/go/shared
+  - .generated/go/store
+- package: github.com/uber/ringpop-go
+  version: v0.8.5
+  subpackages:
+  - discovery
+  - discovery/statichosts
+  - events
+  - forward
+  - hashring
+  - logging
+  - shared
+  - swim
+  - util
+- package: github.com/uber/tchannel-go
+  subpackages:
+  - hyperbahn
+  - thrift
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: gopkg.in/validator.v2
+- package: gopkg.in/yaml.v2
+- package: github.com/Shopify/sarama
+  version: ^1.11.0
+  repo: http://github.com/Shopify/sarama
+- package: github.com/rcrowley/go-metrics
+- package: github.com/google/uuid
+  version: ^0.2.0

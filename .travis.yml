@@ -1,0 +1,50 @@
+language: go
+dist: xenial
+sudo: required
+go:
+  - "1.11.4"
+
+env:
+  global:
+    - CUDA_VERSION="10.0"
+    - CUDA_PKG_VERSION="130-1"
+    - CUDA_PKG=cuda-repo-ubuntu1404_${CUDA_VERSION}.${CUDA_PKG_VERSION}_amd64.deb
+    - CUDA_LIB_LOCAL=${HOME}/cuda_lib_${CUDA_VERSION}
+    - CUDA_HOME=${CUDA_LIB_LOCAL}
+    - PATH=${CUDA_HOME}/bin:${GOPATH}/bin:${CUDA_HOME}/nvvm/bin:${PATH}
+    - LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${TRAVIS_HOME}/gopath/src/github.com/uber/aresdb/lib
+    - GO111MODULE=on
+    - PKG_CONFIG_PATH=${LD_LIBRARY_PATH}/pkgconfig:${PKG_CONFIG_PATH}
+
+cache:
+  directories:
+    - lib
+    - gtest
+    - $CUDA_LIB_LOCAL
+
+# safelist
+branches:
+  only:
+    - master
+
+before_install:
+  - sudo .travis/pre_install.sh
+
+install:
+  - rm -rf ./build && mkdir -p build
+  - .travis/install_clang_tools.sh
+  - .travis/install_cuda.sh
+  - ./build/cmake/bin/cmake .
+  - .travis/install_golang_tools.sh
+script:
+  - while sleep 2m; do echo "=====[ $SECONDS seconds, build still running... ]====="; done &
+  - make -j 2 travis
+  - make -j 2 lint
+  - kill %1
+after_success:
+  # generate coverage output file
+  - gover . coverage.txt
+  # send to codecov.io
+  - bash <(curl -s https://codecov.io/bash)
+after_script:
+  - .travis/cleanup.sh
