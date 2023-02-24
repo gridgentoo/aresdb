@@ -11,7 +11,6 @@ require (
 	github.com/bkaradzic/go-lz4 v1.0.0 // indirect
 	github.com/chzyer/logex v1.1.10 // indirect
 	github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1 // indirect
-	github.com/confluentinc/confluent-kafka-go v0.0.0-20190207113419-213e7cd9dd31
 	github.com/curator-go/curator v0.0.0-20180923140012-8a961ea3b252
 	github.com/emirpasic/gods v1.12.0
 	github.com/fatih/color v1.7.0
@@ -46,7 +45,7 @@ require (
 	go.uber.org/fx v1.9.0
 	go.uber.org/goleak v0.10.0 // indirect
 	go.uber.org/zap v1.10.0
-	golang.org/x/net v0.0.0-20190628185345-da137c7871d7
+	golang.org/x/net v0.7.0
 	google.golang.org/grpc v1.21.1
 	gopkg.in/validator.v2 v2.0.0-20180514200540-135c24b11c19
 	gopkg.in/yaml.v2 v2.2.2
